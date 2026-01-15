@@ -12,3 +12,25 @@
 .idea/
 .vscode/
 *.code-workspace
+
+# VitePress
+/coverage
+/src/client/shared.ts
+/src/node/shared.ts
+*.log
+*.tgz
+.DS_Store
+.idea
+.temp
+.vite_opt_cache
+.vscode
+dist
+cache
+temp
+examples-temp
+node_modules
+pnpm-global
+TODOs.md
+*.timestamp-*.mjs
+.vitepress/cache/
+.vitepress/dist/
