@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],  
+  base: '/linux-devops/',
+  head: [['link', { rel: 'icon', href: '/linux-devops/favicon.ico' }]],
   srcDir: '../',
   title: 'Linux DevOps Learning',
   description: 'Comprehensive Linux & DevOps notes, tutorials, and labs',
