@@ -6,7 +6,7 @@ hero:
   text: Learning Journey
   tagline: Comprehensive notes, tutorials, and hands-on labs for mastering Linux & DevOps
   image:
-    src: /logo.png
+    src: https://freepngimg.com/download/logo/66632-gnu-controversy-linux-logo-naming-mint-software.png
     alt: Logo
   actions:
     - theme: brand
@@ -23,27 +23,13 @@ features:
   - icon: 🐧
     title: Linux Fundamentals
     details: Master the terminal, file systems, permissions, and bash scripting from scratch
-    link: /test
+    link: /01-linux-fundamentals/01-the-linux-terminal
   
   - icon: 🔧
-    title: System Administration
-    details: Learn package management, systemd, monitoring, and production best practices
+    title: System Administration (Coming Soon)
   
-  - icon: 🐳
-    title: Containerization
-    details: Docker fundamentals, compose, and container security
-  
-  - icon: ☸️
-    title: Orchestration
-    details: Kubernetes basics, deployments, services, and cluster management
-  
-  - icon: 🔄
-    title: CI/CD
-    details: GitHub Actions, automated testing, and deployment pipelines
-  
-  - icon: 📊
-    title: Monitoring
-    details: Prometheus, Grafana, logging, and observability
+  - icon: 💲
+    title: Basics of Bash (Coming Soon)
 ---
 
 ## 🎯 Learning in Public

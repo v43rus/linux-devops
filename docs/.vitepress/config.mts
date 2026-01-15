@@ -11,6 +11,7 @@ export default defineConfig({
     
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/guide' },
       { text: 'Cheat Sheets', link: '/cheat-sheets' },
       { text: 'Resources', link: '/resources' },
       { 
@@ -69,7 +70,7 @@ export default defineConfig({
 
     // Enable edit link
     editLink: {
-      pattern: 'https://github.com/v43rus/linux-devops/edit/master/docs/:path',
+      pattern: 'https://github.com/v43rus/linux-devops/edit/master/:path',
       text: 'Edit this page on GitHub'
     }
   }
