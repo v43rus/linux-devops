@@ -1,5 +1,7 @@
 # Linux DevOps 🚀
 
+[![View Documentation](https://img.shields.io/badge/View-Documentation-blue?style=for-the-badge)](https://v43rus.github.io/linux-devops/)
+
 Personal learning notes from the ZTM DevOps Bootcamp (Linux System Administrator track) along with other sources.
 
 This is a work in progress and will be continually updated as I go along with the course, even when done I will keep updating this repository as I learn new things which I think is relevant.
