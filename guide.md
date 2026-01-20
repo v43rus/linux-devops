@@ -9,7 +9,7 @@ Start here to build a solid foundation in Linux.
 | # | Topic | Status |
 |---|-------|--------|
 | 1 | [The Linux Terminal](/01-linux-fundamentals/01-the-linux-terminal) | Available |
-| 2 | File System Navigation | Coming Soon |
+| 2 | [The Linux File System](/01-linux-fundamentals/02-the-linux-file-system.md) | In Progress |
 | 3 | User & Permission Management | Coming Soon |
 | 4 | Process Management | Coming Soon |
 

@@ -30,8 +30,8 @@ export default defineConfig({
               link: '/01-linux-fundamentals/01-the-linux-terminal' 
             },
             { 
-              text: 'File System (Coming Soon)', 
-              link: '#' 
+              text: 'File System (In Progress)', 
+              link: '/01-linux-fundamentals/02-the-linux-file-system' 
             },
           ]
         },

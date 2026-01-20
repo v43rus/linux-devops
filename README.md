@@ -26,7 +26,7 @@ This repository documents my journey learning DevOps and Linux system administra
 
 ### Linux Fundamentals (In Progress)
 - [x] [The Linux Terminal in Depth](./01-linux-fundamentals/01-the-linux-terminal.md)
-- [ ] File System Navigation
+- [ ] [File System Navigation](./01-linux-fundamentals/02-the-linux-file-system.md)
 - [ ] User Accounts Management
 - [ ] Permissions in Linux
 - [ ] Networking
