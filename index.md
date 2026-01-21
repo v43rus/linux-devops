@@ -27,7 +27,7 @@ features:
   
   - icon: 🔧
     title: System Administration (Coming Soon)
-  
+    
   - icon: 💲
     title: Basics of Bash (Coming Soon)
 ---

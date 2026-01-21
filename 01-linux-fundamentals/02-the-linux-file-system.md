@@ -10,6 +10,7 @@
   - [Types of "Files" in Linux](#types-of-files-in-linux)
   - [Common Linux File Systems](#common-linux-file-systems)
   - [Key Characteristics](#key-characteristics)
+- [🌳 The Filesystem Hierarchy Standard](#-the-filesystem-hierarchy-standard)
 
 ---
 
@@ -56,6 +57,51 @@ df -Th
 
 # Identify a file's actual type (regardless of extension)
 file myfile.txt
+```
+
+---
+
+## 🌳 The Filesystem Hierarchy Standard
+
+Linux follows the **Filesystem Hierarchy Standard (FHS)**, organizing all files under a single root (`/`).
+
+| Directory | Description |
+|-----------|-------------|
+| `/bin` | Binaries or user executable files available to all users |
+| `/sbin` | System binaries that only the superuser will need |
+| `/boot` | Files required for starting your system |
+| `/home` | User home directories (all users except root) |
+| `/dev` | Device files |
+| `/etc` | System-wide configuration files |
+| `/lib` | Shared library files used by different applications |
+| `/media` | Mount point for external storage (automatically mounted) |
+| `/mnt` | Manual mount point (less commonly used these days) |
+| `/tmp` | Temporary files saved by running applications. Non-privileged users may also store files here temporarily |
+| `/proc` | Virtual directory with hardware info (CPU, RAM, Kernel). Generated at boot or on-the-fly as the system runs |
+| `/sys` | Information about devices, drivers, and some kernel features |
+| `/srv` | Data for servers |
+| `/run` | Temporary file system which runs in RAM |
+| `/usr` | User binaries, shared libraries, and more. On some distros (like CentOS), many commands are in `/usr/bin` and `/usr/sbin` instead of `/bin` and `/sbin` |
+| `/var` | Variable-length files such as logs (files that register events on the system) |
+
+```
+/
+├── bin/       → Essential user binaries
+├── sbin/      → System binaries
+├── boot/      → Boot loader files
+├── home/      → User home directories
+├── dev/       → Device files
+├── etc/       → Configuration files
+├── lib/       → Shared libraries
+├── media/     → Removable media (auto-mount)
+├── mnt/       → Manual mount point
+├── tmp/       → Temporary files
+├── proc/      → Process & hardware info (virtual)
+├── sys/       → Device & kernel info (virtual)
+├── srv/       → Server data
+├── run/       → Runtime data (RAM)
+├── usr/       → User programs & libraries
+└── var/       → Variable data (logs, caches)
 ```
 
 ---
