@@ -13,6 +13,7 @@
 - [🌳 The Filesystem Hierarchy Standard](#-the-filesystem-hierarchy-standard)
 - [🚶 Walking Through the File System](#-walking-through-the-file-system)
 - [📋 The `ls` Command](#-the-ls-command)
+- [🕐 File Timestamps](#-file-timestamps)
 
 ---
 
@@ -209,5 +210,50 @@ ls -lx
 │   └── Permissions (owner/group/others)
 └── File type (- = file, d = directory, l = link)
 ```
+
+---
+
+## 🕐 File Timestamps
+
+Every file in Linux has three timestamps that track different events.
+
+| Timestamp | Name | Description | View with |
+|-----------|------|-------------|-----------|
+| **atime** | Access time | Last time the file was read | `ls -lu` |
+| **mtime** | Modification time | Last time the file contents were modified | `ls -l`, `ls -lt` |
+| **ctime** | Change time | Last time file metadata was changed (permissions, owner, etc.) | `ls -lc` |
+
+### Viewing Timestamps
+
+```bash
+# Show modification time (default)
+ls -l
+
+# Sort by modification time (newest first)
+ls -lt
+
+# Show access time
+ls -lu
+
+# Show change time (metadata)
+ls -lc
+
+# Show all timestamps with stat
+stat file.txt
+```
+
+### Example `stat` Output
+
+```bash
+$ stat file.txt
+  File: file.txt
+  Size: 4096       Blocks: 8          IO Block: 4096   regular file
+Access: 2024-01-20 10:30:00.000000000 +0000
+Modify: 2024-01-19 15:45:00.000000000 +0000
+Change: 2024-01-19 15:45:00.000000000 +0000
+ Birth: -
+```
+
+> 💡 **Note:** Reading a file updates **atime**, editing content updates **mtime**, and changing permissions/ownership updates **ctime**.
 
 ---
