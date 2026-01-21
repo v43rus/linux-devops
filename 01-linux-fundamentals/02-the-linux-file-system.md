@@ -11,6 +11,7 @@
   - [Common Linux File Systems](#common-linux-file-systems)
   - [Key Characteristics](#key-characteristics)
 - [🌳 The Filesystem Hierarchy Standard](#-the-filesystem-hierarchy-standard)
+- [🚶 Walking Through the File System](#-walking-through-the-file-system)
 
 ---
 
@@ -102,6 +103,58 @@ Linux follows the **Filesystem Hierarchy Standard (FHS)**, organizing all files 
 ├── run/       → Runtime data (RAM)
 ├── usr/       → User programs & libraries
 └── var/       → Variable data (logs, caches)
+```
+
+---
+
+## 🚶 Walking Through the File System
+
+### Essential Navigation Commands
+
+| Command | Description |
+|---------|-------------|
+| `pwd` | Print working directory — shows your current location |
+| `cd` | Change directory — move to a different location |
+| `ls` | List contents of a directory |
+| `tree` | Visual representation of directory structure |
+
+### Path Shortcuts
+
+| Symbol | Meaning |
+|--------|---------|
+| `~` | Current user's home directory |
+| `/` | Root of the file system |
+| `.` | Current directory |
+| `..` | Parent directory |
+| `-` | Previous directory |
+
+### Examples
+
+```bash
+# Where am I?
+pwd
+# /home/v43
+
+# Go to home directory
+cd ~
+cd          # Same as cd ~
+
+# Go to root
+cd /
+
+# Go up one directory
+cd ..
+
+# Go to previous directory
+cd -
+
+# List files
+ls
+ls -la      # Long format with hidden files
+
+# View directory tree
+tree
+tree -L 2   # Limit depth to 2 levels
 ```
 
 ---
