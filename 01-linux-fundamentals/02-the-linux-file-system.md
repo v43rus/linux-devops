@@ -12,6 +12,7 @@
   - [Key Characteristics](#key-characteristics)
 - [🌳 The Filesystem Hierarchy Standard](#-the-filesystem-hierarchy-standard)
 - [🚶 Walking Through the File System](#-walking-through-the-file-system)
+- [📋 The `ls` Command](#-the-ls-command)
 
 ---
 
@@ -155,6 +156,58 @@ ls -la      # Long format with hidden files
 # View directory tree
 tree
 tree -L 2   # Limit depth to 2 levels
+```
+
+---
+
+## 📋 The `ls` Command
+
+The `ls` command lists directory contents. Combine flags for more detailed output.
+
+### Common Flags
+
+| Flag | Description |
+|------|-------------|
+| `-l` | Long list format (permissions, owner, size, date) |
+| `-a` | Show all files (including hidden files starting with `.`) |
+| `-S` | Sort by size (descending) |
+| `-h` | Human-readable sizes (KB, MB, GB) |
+| `-x` | Sort by extension |
+
+### Examples
+
+```bash
+# Basic listing
+ls
+
+# Long format
+ls -l
+
+# Show hidden files
+ls -a
+
+# Combine flags: long format, all files, human-readable sizes
+ls -lah
+
+# Sort by size (largest first)
+ls -lSh
+
+# Sort by extension
+ls -lx
+```
+
+### Reading `ls -l` Output
+
+```
+-rw-r--r-- 1 user group 4096 Jan 20 10:00 file.txt
+│└──┬───┘  │  │    │     │       │         └── Filename
+│   │      │  │    │     │       └── Modification date
+│   │      │  │    │     └── File size
+│   │      │  │    └── Group owner
+│   │      │  └── User owner
+│   │      └── Number of hard links
+│   └── Permissions (owner/group/others)
+└── File type (- = file, d = directory, l = link)
 ```
 
 ---
