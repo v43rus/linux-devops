@@ -14,6 +14,10 @@
 - [🚶 Walking Through the File System](#-walking-through-the-file-system)
 - [📋 The `ls` Command](#-the-ls-command)
 - [🕐 File Timestamps](#-file-timestamps)
+- [👁️ Viewing Files](#️-viewing-files)
+- [🛠️ Handling Files](#️-handling-files)
+- [🔗 Hard Links vs Symbolic Links](#-hard-links-vs-symbolic-links)
+- [📚 Quick Reference Card](#-quick-reference-card)
 
 ---
 
@@ -257,3 +261,270 @@ Change: 2024-01-19 15:45:00.000000000 +0000
 > 💡 **Note:** Reading a file updates **atime**, editing content updates **mtime**, and changing permissions/ownership updates **ctime**.
 
 ---
+
+## 👁️ Viewing Files
+
+### `cat` — Concatenate and Display
+
+Displays file contents in the terminal. Best for smaller files.
+
+```bash
+cat file.txt              # Display file contents
+cat -n file.txt           # Show line numbers
+cat file1.txt file2.txt   # Display multiple files together
+```
+
+### `less` — Interactive Pager
+
+Better for viewing long files with navigation and search capabilities.
+
+```bash
+less file.txt
+```
+
+| Key | Action |
+|-----|--------|
+| `h` | Show help |
+| `Space` / `f` | Forward one page |
+| `b` | Back one page |
+| `/pattern` | Search forward |
+| `?pattern` | Search backward |
+| `n` | Next search result |
+| `N` | Previous search result |
+| `g` | Go to beginning |
+| `G` | Go to end |
+| `q` | Quit |
+
+### `head` — View Beginning of File
+
+Shows the first 10 lines of a file by default.
+
+```bash
+head file.txt             # First 10 lines
+head -n 20 file.txt       # First 20 lines
+```
+
+### `tail` — View End of File
+
+Shows the last 10 lines of a file by default.
+
+```bash
+tail file.txt             # Last 10 lines
+tail -n 20 file.txt       # Last 20 lines
+tail -f file.txt          # Follow file in real-time (great for logs)
+```
+
+### `watch` — Monitor Command Output
+
+Runs a command repeatedly (every 2 seconds by default) and displays the output.
+
+```bash
+watch ls                  # Watch folder for changes
+watch -n 1 ls             # Update every 1 second
+watch "df -h"             # Monitor disk space
+```
+
+---
+
+## 🛠️ Handling Files
+
+### Creating Files and Directories
+
+| Command | Description |
+|---------|-------------|
+| `touch file.txt` | Create an empty file (or update timestamp) |
+| `mkdir dir` | Create a directory |
+| `mkdir dir1 dir2` | Create multiple directories |
+| `mkdir -p parent/child` | Create nested directories |
+
+```bash
+touch newfile.txt
+mkdir projects
+mkdir -p projects/web/src
+```
+
+### Copying Files — `cp`
+
+```bash
+cp file1.txt file2.txt              # Copy file1 to file2 (overwrites)
+cp file1.txt file2.txt dir/         # Copy multiple files to directory
+cp -r dir1/ dir2/                   # Copy directory recursively
+cp -p file1.txt file2.txt           # Preserve permissions and ownership
+```
+
+> 💡 **Note:** By default, the user who copies becomes the owner of the new file. Use `-p` to preserve original permissions.
+
+### Moving and Renaming — `mv`
+
+```bash
+mv file.txt /new/location/          # Move file to new location
+mv oldname.txt newname.txt          # Rename file
+mv file1.txt file2.txt dir/         # Move multiple files to directory
+mv *.txt documents/                 # Move all .txt files to directory
+```
+
+> ⚠️ **Warning:** `mv` overwrites files without warning if they already exist at the destination.
+
+### Removing Files and Directories — `rm`
+
+```bash
+rm file.txt                         # Remove file
+rm file1.txt file2.txt              # Remove multiple files
+rm -r directory/                    # Remove directory and contents
+rm -f file.txt                      # Force remove (no confirmation)
+rm -rf directory/                   # Force remove directory (use with caution!)
+```
+
+> ⚠️ **Safety Tips:**
+> - Always use **tab-autocomplete** when removing files to avoid typos
+> - `rm` removes file links and frees memory, but data may be recoverable
+> - Use `shred` for secure deletion of sensitive files
+
+### Secure Deletion — `shred`
+
+```bash
+shred -u file.txt                   # Overwrite and remove file securely
+shred -n 5 file.txt                 # Overwrite 5 times (default is 3)
+```
+
+### Quick Reference
+
+| Task | Command |
+|------|---------|
+| Create file | `touch file.txt` |
+| Create directory | `mkdir dir` |
+| Copy file | `cp src dest` |
+| Copy directory | `cp -r src/ dest/` |
+| Move/rename | `mv src dest` |
+| Remove file | `rm file` |
+| Remove directory | `rm -r dir/` |
+| Secure delete | `shred -u file` |
+
+---
+
+## 🔗 Hard Links vs Symbolic Links
+
+Links allow you to reference files from multiple locations without duplicating data.
+
+### Hard Links
+
+- Points directly to the file's data (inode) on disk
+- Cannot link to directories
+- Cannot cross filesystem boundaries
+- File data remains until **all** hard links are deleted
+- Same inode number as the original
+
+```bash
+ln original.txt hardlink.txt
+ls -li    # Shows same inode number for both
+```
+
+### Symbolic (Soft) Links
+
+- Points to the file's **path** (like a shortcut)
+- Can link to directories
+- Can cross filesystem boundaries
+- Breaks if the target is moved or deleted
+
+```bash
+ln -s /path/to/original symlink.txt
+ls -l symlink.txt
+# symlink.txt -> /path/to/original
+```
+
+### Comparison
+
+| Feature | Hard Link | Symbolic Link |
+|---------|-----------|---------------|
+| Links to | Inode (data) | Path (name) |
+| Cross filesystem | No | Yes |
+| Link to directory | No | Yes |
+| Original deleted | Data preserved | Link breaks |
+| Command | `ln file link` | `ln -s file link` |
+
+### Managing Links
+
+```bash
+# Create hard link
+ln original.txt hardlink.txt
+
+# Create symbolic link
+ln -s /path/to/original symlink.txt
+
+# Find what a symlink points to
+readlink symlink.txt
+
+# Find all hard links to a file (by inode)
+find / -inum $(stat -c %i original.txt) 2>/dev/null
+```
+
+---
+
+## 📚 Quick Reference Card
+
+### Navigation
+
+```bash
+pwd                     # Print working directory
+cd /path/to/dir         # Change directory
+cd ~                    # Go to home directory
+cd -                    # Go to previous directory
+ls -la                  # List all files with details
+tree -L 2               # Directory tree (2 levels deep)
+```
+
+### Viewing Files
+
+```bash
+cat file.txt            # Display entire file
+cat -n file.txt         # Display with line numbers
+less file.txt           # Interactive pager
+head -n 20 file.txt     # First 20 lines
+tail -n 20 file.txt     # Last 20 lines
+tail -f file.txt        # Follow file in real-time
+```
+
+### File Operations
+
+```bash
+touch file.txt          # Create empty file
+mkdir -p dir/subdir     # Create nested directories
+cp -r src/ dest/        # Copy directory recursively
+cp -p file1 file2       # Copy preserving permissions
+mv old.txt new.txt      # Rename file
+mv file.txt dir/        # Move file to directory
+rm file.txt             # Remove file
+rm -r directory/        # Remove directory
+```
+
+### Links
+
+```bash
+ln file hardlink        # Create hard link
+ln -s file symlink      # Create symbolic link
+readlink symlink        # Show link target
+```
+
+### File Information
+
+```bash
+file myfile             # Identify file type
+stat myfile             # Detailed file info
+ls -li                  # Show inode numbers
+df -Th                  # Disk space by filesystem
+du -sh directory/       # Directory size
+```
+
+### Timestamps
+
+```bash
+ls -l                   # Show modification time
+ls -lu                  # Show access time
+ls -lc                  # Show change time
+ls -lt                  # Sort by modification time
+stat file.txt           # Show all timestamps
+```
+
+---
+
+> 📝 **Note:** This guide covers standard Linux file system operations. Some commands may vary slightly between distributions. When in doubt, use `man <command>` for detailed documentation.
