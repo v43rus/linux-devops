@@ -17,6 +17,7 @@
 - [👁️ Viewing Files](#️-viewing-files)
 - [🛠️ Handling Files](#️-handling-files)
 - [🔗 Hard Links vs Symbolic Links](#-hard-links-vs-symbolic-links)
+- [⚖️ Comparing Files](#️-comparing-files)
 - [📚 Quick Reference Card](#-quick-reference-card)
 
 ---
@@ -457,6 +458,57 @@ readlink symlink.txt
 # Find all hard links to a file (by inode)
 find / -inum $(stat -c %i original.txt) 2>/dev/null
 ```
+
+---
+
+## ⚖️ Comparing Files
+
+### `cmp` — Byte-by-Byte Comparison
+
+Check if two files are identical. Works with both text and binary files.
+
+```bash
+cmp file_a file_b
+# No output = files are identical
+# Shows first difference location if different
+```
+
+### `sha256sum` — Checksum Comparison
+
+Generate a cryptographic hash of a file. Even a single bit difference results in a completely different checksum.
+
+```bash
+sha256sum file_a
+sha256sum file_b
+
+# Compare checksums directly
+sha256sum file_a file_b
+```
+
+### `diff` — Line-by-Line Comparison
+
+Shows the specific lines that differ between files. Essential for development work and comparing commits.
+
+```bash
+diff file_a file_b
+```
+
+| Flag | Description |
+|------|-------------|
+| `-B` | Ignore blank lines |
+| `-w` | Ignore whitespace |
+| `-c` | Context format (more verbose) |
+| `-u` | Unified format (commonly used for patches) |
+| `-y` | Side-by-side comparison |
+
+```bash
+diff -B file_a file_b       # Ignore blank lines
+diff -w file_a file_b       # Ignore whitespace
+diff -c file_a file_b       # Verbose context format
+diff -u file_a file_b       # Unified format (for patches)
+```
+
+> 💡 **Tip:** `diff` output is used by the `patch` program to apply fixes. See `man patch` for more details.
 
 ---
 
