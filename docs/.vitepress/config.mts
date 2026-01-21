@@ -25,23 +25,28 @@ export default defineConfig({
         {
           text: 'Linux Fundamentals',
           items: [
-            { 
-              text: 'The Linux Terminal', 
-              link: '/01-linux-fundamentals/01-the-linux-terminal' 
+            {
+              text: 'The Linux Terminal',
+              link: '/01-linux-fundamentals/01-the-linux-terminal'
             },
-            { 
-              text: 'File System (In Progress)', 
-              link: '/01-linux-fundamentals/02-the-linux-file-system' 
+            {
+              text: 'The Linux File System',
+              link: '/01-linux-fundamentals/02-the-linux-file-system'
+            },
+            {
+              text: 'Vim',
+              link: '/01-linux-fundamentals/03-vim'
             },
           ]
         },
       ],
-      
+
       '/cheat-sheets/': [
         {
           text: 'Cheat Sheets',
           items: [
-            { text: 'Linux Commands', link: '/cheat-sheets/linux-commands' }
+            { text: 'Linux Commands', link: '/cheat-sheets/linux-commands' },
+            { text: 'Vim Commands', link: '/cheat-sheets/vim-commands' }
           ]
         }
       ]
